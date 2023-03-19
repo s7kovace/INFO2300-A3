@@ -38,3 +38,28 @@ Future enhancements and bug-fixing will be handled using the standard Git workfl
 ## How to Run the Project
 To run the project, simply clone the repository and open the `index.html` file in your preferred web browser. Make sure to have the `css` and `js` folders in the same directory as the `index.html` file.
 
+## Usage
+
+To use the app, follow these steps:
+
+1. Register for an account by clicking on the "Register" button.
+2. Log in using your newly created account credentials.
+3. Browse the available car and motor ads, or create your own ad by clicking on the "Post Ad" button.
+4. If you're interested in purchasing a car or motor, contact the seller using the provided contact information.
+5. As an admin user, you can view the list of active users by clicking on the "Admin Dashboard" button.
+
+## Contributing
+
+To contribute to this project, please follow these steps:
+
+1. Fork the repository on GitHub.
+2. Create a new branch for your feature or bug fix.
+3. Commit your changes to the new branch.
+4. Push your changes to the remote repository.
+5. Create a pull request for your changes to be merged into the main repository.
+
+Please ensure your code adheres to the existing coding style and conventions.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
