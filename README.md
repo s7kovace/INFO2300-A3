@@ -1,5 +1,7 @@
 # Car Ad App (INFO2300)
 
+**Author: Stefan Kovacevic**
+
 This simple jQuery app allows users to create accounts, post car and motor ads, view ads, and make purchase decisions. Admin users can see a list of active users.
 
 ## Getting Started
