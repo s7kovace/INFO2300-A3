@@ -26,8 +26,8 @@ fieldset {
 }
 
 .btn-group button {
-    background-color: #4CAF50; /* Green background */
-    border: 1px solid green; /* Green border */
+    background-color: darkblue; /* Blue background */
+    border: 1px solid blue; /* Blue border */
     color: white; /* White text */
     padding: 10px 24px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
