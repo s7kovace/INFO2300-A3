@@ -1,0 +1,721 @@
+<!--
+Mobile web development 
+Template for General purpose html5 page with JQuery Mobile
+Created by: Stefan Kovacevic
+email:      skovacevic2039@conestogac.on.ca
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>Stefan Kovacevic Final Project</title>
+        <!--jquery-->
+        <script src="js/lib/jquery-2.1.4.js"></script>
+        <!--jquery Mobile-->
+        <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+        <!--jquery mobile css-->
+        <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css">
+
+        <!--jquery mobile validation-->
+        <script src="js/lib/jquery.validate.js"></script>
+
+        <!--our scripts-->
+        <script src="js/DAL.js"></script>
+        <script src="js/database.js"></script>
+        <script src="js/facade.js"></script>
+        <script src="js/util.js"></script>
+        <script src="js/global.js"></script>
+
+        <!--our styles-->
+        <link rel="stylesheet" href="css/myStyleSheet.css">
+
+    </head>
+    <body>
+        <!--<div id="loginDiv">-->
+        <div id="loginPage" data-role="page" class="align-items-center justify-content-center">
+
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>CarDeals App</h1>
+            </header>
+            <section data-role="content">
+                <h1 style="text-align: center; font-size: 200%">Login</h1>
+                <form>
+                    <input type="text" id="txtUsername" name="txtUsername" placeholder="Username">
+                    <input type="password" id="txtPassword" name="txtPassword" placeholder="Password">
+                    <button type="button" data-role="button" id="btnSignIn" name="btnSignIn" class="ui-btn-active">
+                        Sign in
+                    </button>
+
+
+                </form>
+
+                <p>New user? <a href="#registerUser">Create an account here</a></p>
+
+
+                <p id="message" style="color: red; font-weight: bold"></p>
+            </section>
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h1>&copy; 2021 Stefan Kovacevic</h1>
+            </footer>
+
+        </div>
+
+        <div id="registerUser" data-role="page">
+
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>CarDeals App</h1>
+            </header>
+
+            <h1 style="text-align: center; font-size: 200%">Register User</h1>
+            <section data-role="content">
+
+                <form id="newUserForm" name="newUserForm">
+
+                    <label for="txtNewUsername">Username:</label>
+                    <input type="text" id="txtNewUsername" name="txtNewUsername" data-clear-btn="true">
+                    <label for="txtNewPassword">Password:</label>
+                    <input type="text" id="txtNewPassword" name="txtNewPassword" data-clear-btn="true">
+
+                    <label for="txtFirstName">First Name:</label>
+                    <input type="text" id="txtFirstName" name="txtFirstName" data-clear-btn="true">
+                    <label for="txtLastName">Last Name:</label>
+                    <input type="text" id="txtLastName" name="txtLastName" data-clear-btn="true">
+                    <label for="txtAddress">Address:</label>
+                    <input type="text" id="txtAddress" name="txtAddress" data-clear-btn="true">
+                    <label for="txtCity">City:</label>
+                    <input type="text" id="txtCity" name="txtCity" data-clear-btn="true">
+                    <label for="txtProvince">Province:</label>
+                    <input type="text" id="txtProvince" name="txtProvince" data-clear-btn="true">
+                    <label for="txtPostalCode">Postal Code:</label>
+                    <input type="text" id="txtPostalCode" name="txtPostalCode" data-clear-btn="true">
+                    <label for="txtPhoneNumber">Phone Number:</label>
+                    <input type="text" id="txtPhoneNumber" name="txtPhoneNumber" data-clear-btn="true">
+                    <label for="txtEmail">Email:</label>
+                    <input type="text" id="txtEmail" name="txtEmail" data-clear-btn="true">
+
+                    <button type="button" data-role="button" id="btnAddUser" name="btnAddUser"
+                            data-icon="plus" data-theme="b">Add User
+                    </button>
+                    <button type="button" data-role="button" id="btnGoBackLogin" name="btnGoBackLogin"
+                            data-icon="back" class="ui-btn-active ui-state-persist">Go Back!
+                    </button>
+                </form>
+            </section>
+
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h1>&copy; 2021 Stefan Kovacevic</h1>
+            </footer>
+        </div>
+
+        <!--</div>-->
+
+        <!--<div id="mainContent">-->
+        <div id="homePage" data-role="page">
+
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>CarDeals App</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#homePage" data-icon="home" data-theme="a"
+                               class="ui-btn-active ui-state-persist">Home</a></li>
+                        <li><a href="#addPage" data-icon="plus" data-theme="a">Post Ad</a></li>
+                        <li><a href="#viewAdsPage" data-icon="grid" data-theme="a">View All Ads</a></li>
+                        <li><a href="#modifyUsers" data-icon="gear" data-theme="a">Modify Users</a></li>
+                        <li id="signOut" onclick="signOut()"><a href="#" data-icon="user" data-theme="a">Sign Out</a>
+                        </li>
+                        <li><a href="#aboutDeveloper" data-icon="search" data-theme="a">About</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+
+                <h2>Stefan Kovacevic's CarDeals App</h2>
+
+                <p>Welcome to the Stefan Kovacevic's CarDeals app. In this app you will be able to post
+                    advertisements of your car or motorcycle to thousands of our clients </p>
+
+                <img src="img/cardeals.png" class="picture_align" alt="Website Logo"/>
+
+                <p>Please feel free to contact me if you have any suggestions!</p>
+
+                <a href="#" data-role="button" data-icon="plus" data-iconpos="left">Call: 519-722-1531</a>
+                <a href="#" data-role="button" data-icon="plus"
+                   data-iconpos="left">Skovacevic2039@conestogac.on.ca</a>
+                <p>Website:</p>
+                <a href="#" data-role="button" data-icon="plus" data-iconpos="left">Conestoga College</a>
+
+
+            </section>
+
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h1>&copy; 2021 Stefan Kovacevic</h1>
+            </footer>
+        </div>
+        <!--</div>-->
+
+        <div id="addPage" data-role="page">
+
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>CarDeals App</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#homePage" data-icon="home" data-theme="a">Home</a></li>
+                        <li><a href="#addPage" data-icon="plus" data-theme="a"
+                               class="ui-btn-active ui-state-persist">Post Ad</a></li>
+                        <li><a href="#viewAdsPage" data-icon="grid" data-theme="a">View All Ads</a></li>
+                        <li><a href="#modifyUsers" data-icon="gear" data-theme="a">Modify Users</a></li>
+                        <li onclick="signOut()"><a href="#" data-icon="user" data-theme="a">Sign Out</a></li>
+                        <li><a href="#aboutDeveloper" data-icon="search" data-theme="a">About</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+                <h2 class="center">Post an Advertisment</h2>
+
+
+                <p class="center">Please select the vehicle Type:</p>
+                <fieldset data-role="controlgroup" data-type="horizontal" class="centerButtons">
+                    <input type="radio" id="radCar" name="radCarOrMotorcycle" checked>
+                    <label for="radCar">Car</label>
+
+                    <input type="radio" id="radMotorcycle" name="radCarOrMotorcycle">
+                    <label for="radMotorcycle">Motorcycle</label>
+                </fieldset>
+
+                <div id="carDetails">
+                    <form id="frmAddCarAd" name="frmAddCarAd">
+                        <label for="txtMakeCar">Make:</label>
+                        <input type="text" id="txtMakeCar" name="txtMakeCar" data-clear-btn="true">
+                        <label for="txtModelCar">Model:</label>
+                        <input type="text" id="txtModelCar" name="txtModelCar" data-clear-btn="true">
+                        <label for="txtYearCar">Year:</label>
+                        <input type="number" id="txtYearCar" name="txtYearCar" data-clear-btn="true">
+                        <label for="txtKilometers">Kilometers:</label>
+                        <input type="number" id="txtKilometers" name="txtKilometers" data-clear-btn="true">
+
+
+                        <img src="img/car1.jpg" class="picture_align" alt="Car1pic"/>
+                        <p class="center">Drive Train:</p>
+                        <fieldset data-role="controlgroup" data-type="horizontal" class="centerButtons">
+                            <input type="radio" id="radFWD" name="radDriveTrain" checked>
+                            <label for="radFWD">FWD</label>
+                            <input type="radio" id="radRWD" name="radDriveTrain">
+                            <label for="radRWD">RWD</label>
+                            <input type="radio" id="radAWD" name="radDriveTrain">
+                            <label for="radAWD">AWD</label>
+                        </fieldset>
+                        <label for="txtTransmission">Transmission:</label>
+                        <input type="text" id="txtTransmission" name="txtTransmission" data-clear-btn="true">
+                        <label for="skFuelTypeAdd">Fuel Type:</label>
+                        <select name="skFuelTypeAdd" id="skFuelTypeAdd">
+                            <option value="Gasoline">Gasoline</option>
+                            <option value="Diesel">Diesel</option>
+                        </select>
+
+                        <label for="txtDescriptionAdd">Description:</label>
+                        <textarea id="txtDescriptionAdd" name="txtDescriptionAdd"></textarea>
+
+                        <label for="txtPriceCar">Price:</label>
+                        <input type="number" id="txtPriceCar" name="txtPriceCar" data-clear-btn="true">
+
+                        <label for="img">Upload image:</label>
+                        <input type="file" id="img" name="img" accept="image/*">
+
+
+                        <button type="button" data-role="button" id="btnAddAd" name="btnAddAd"
+                                data-icon="plus" data-theme="b">Add Advertisement
+                        </button>
+                    </form>
+                </div>
+
+                <div id="motorcycleDetails" style="display: none">
+
+                    <form id="frmAddMotorcycleAd" name="frmAddMotorcycleAd">
+                        <label for="txtStockNumber">Stock Number:</label>
+                        <input type="text" id="txtStockNumber" name="txtStockNumber" data-clear-btn="true">
+                        <label for="txtMakeMotorcycle">Make:</label>
+                        <input type="text" id="txtMakeMotorcycle" name="txtMakeMotorcycle" data-clear-btn="true">
+                        <label for="txtModelMotorcycle">Model:</label>
+                        <input type="text" id="txtModelMotorcycle" name="txtModelMotorcycle" data-clear-btn="true">
+                        <label for="txtYearMotorcycle">Year:</label>
+                        <input type="number" id="txtYearMotorcycle" name="txtYearMotorcycle" data-clear-btn="true">
+                        <label for="txtKilometersMotorcycle">Kilometers:</label>
+                        <input type="number" id="txtKilometersMotorcycle" name="txtKilometersMotorcycle"
+                               data-clear-btn="true">
+
+                        <img src="img/motocycle1.jpg" class="picture_align" alt="motorcycle-pic"/>
+
+
+                        <label for="txtEngineSizeMotorcycle">Engine Size:</label>
+                        <input type="number" id="txtEngineSizeMotorcycle" name="txtEngineSizeMotorcycle"
+                               data-clear-btn="true">
+
+                        <label for="txtDescriptionAddMotorcycle">Description:</label>
+                        <textarea id="txtDescriptionAddMotorcycle" name="txtDescriptionAddMotorcycle"></textarea>
+
+                        <label for="txtPriceMotorcycle">Price:</label>
+                        <input type="number" id="txtPriceMotorcycle" name="txtPriceMotorcycle" data-clear-btn="true">
+
+                        <button type="button" data-role="button" id="btnAddMotorcycleAd" name="btnAddMotorcycleAd"
+                                data-icon="plus" data-theme="b">Add Advertisement
+                        </button>
+
+
+                    </form>
+
+                </div>
+
+
+            </section>
+
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h1>&copy; 2021 Stefan Kovacevic</h1>
+            </footer>
+        </div>
+
+        <!--<div id="mainContent">-->
+        <div id="viewAdsPage" data-role="page">
+
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>CarDeals App</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#homePage" data-icon="home" data-theme="a">Home</a></li>
+                        <li><a href="#addPage" data-icon="plus" data-theme="a">Post Ad</a></li>
+                        <li><a href="#viewAdsPage" data-icon="grid" data-theme="a"
+                               class="ui-btn-active ui-state-persist">View All Ads</a></li>
+                        <li><a href="#modifyUsers" data-icon="gear" data-theme="a">Modify Users</a></li>
+                        <li onclick="signOut()"><a href="#" data-icon="user" data-theme="a">Sign Out</a></li>
+                        <li><a href="#aboutDeveloper" data-icon="search" data-theme="a">About</a></li>
+                    </ul>
+                </div>
+            </header>
+
+
+            <div class="btn-group" style="width: 100%">
+                <button data-role="button" id="btnDisplayCars" name="btnDisplayCars" style="width: 50%">Cars</button>
+                <button data-role="button" id="btnDisplayMotorcycles" name="btnDisplayMotorcycles" style="width: 50%">
+                    Motorcycles
+                </button>
+            </div>
+
+            <section data-role="content">
+
+
+                <ul id="advertisementsList" data-role="listview" class="ui-listview-inset">
+
+                </ul>
+            </section>
+
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h1>&copy; 2021 Stefan Kovacevic</h1>
+            </footer>
+
+        </div>
+
+        <!--<div id="mainContent">-->
+        <div id="viewAdsInPageCar" data-role="page">
+
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>CarDeals App</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#homePage" data-icon="home" data-theme="a"
+                               class="ui-btn-active ui-state-persist">Home</a></li>
+                        <li><a href="#addPage" data-icon="plus" data-theme="a">Post Ad</a></li>
+                        <li><a href="#viewAdsPage" data-icon="grid" data-theme="a">View All Ads</a></li>
+                        <li><a href="#modifyUsers" data-icon="gear" data-theme="a">Modify Users</a></li>
+                        <li onclick="signOut()"><a href="#" data-icon="user" data-theme="a">Sign Out</a></li>
+                        <li><a href="#aboutDeveloper" data-icon="search" data-theme="a">About</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+
+
+                <div style="border: 1px solid rgba(0, 0, 0, 0.3)" class="center">
+                    <h1>Car information:</h1>
+                    <p id="carYearMakeModelInfo"><b></b></p>
+                    <p id="kilometersInfo"></p>
+                    <p id="driveTrainInfo"></p>
+                    <p id="transmissionInfo"></p>
+                    <p id="fuelTypeInfo"></p>
+                    <p id="priceInfo"></p>
+                    <p id="descriptionInfo"></p>
+                </div>
+
+
+                <div style="border: 1px solid rgba(0, 0, 0, 0.3)" class="center">
+                    <h1>Seller Information:</h1>
+                    <p id="sellerNameCar"></p>
+                    <p id="sellerCityandProvinceCar"></p>
+                    <p id="sellerPhoneNumber"></p>
+                    <p id="sellerEmail"></p>
+                </div>
+
+                <img src="img/car2.jpg" class="picture_align" alt="Car-pic"/>
+
+
+                <div id="buttonsViewPage" data-role="controlgroup" data-type="horizontal">
+                    <button type="button" id="btnCancel" name="btnCancel" data-role="button"
+                            style="background: yellow">Go Back
+                    </button>
+                    <button type="button" id="btnDelete" name="btnDelete" data-role="button"
+                            data-theme="b">Delete
+                    </button>
+                    <button type="button" id="btnUpdate" name="btnUpdate" data-role="button"
+                            class="ui-btn-active">Update
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h1>&copy; 2021 Stefan Kovacevic</h1>
+            </footer>
+        </div>
+        <!--</div>-->
+
+        <!--<div id="mainContent">-->
+        <div id="viewAdsInPageMotorcycle" data-role="page">
+
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>CarDeals App</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#homePage" data-icon="home" data-theme="a"
+                               class="ui-btn-active ui-state-persist">Home</a></li>
+                        <li><a href="#addPage" data-icon="plus" data-theme="a">Post Ad</a></li>
+                        <li><a href="#viewAdsPage" data-icon="grid" data-theme="a">View All Ads</a></li>
+                        <li><a href="#modifyUsers" data-icon="gear" data-theme="a">Modify Users</a></li>
+                        <li onclick="signOut()"><a href="#" data-icon="user" data-theme="a">Sign Out</a></li>
+                        <li><a href="#aboutDeveloper" data-icon="search" data-theme="a">About</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+
+                <h1>Motorcycle information:</h1>
+
+
+                <div style="border: 1px solid rgba(0, 0, 0, 0.3)" class="center">
+                    <p id="motorcycleYearMakeModelInfo"><b></b></p>
+                    <p id="stockNumberInfo"></p>
+                    <p id="kilometersMotorcycleInfo"></p>
+                    <p id="engineSizeInfo"></p>
+                    <p id="priceMotorcycleInfo"></p>
+                    <p id="descriptionMotorcycleInfo"></p>
+                </div>
+
+                <div style="border: 1px solid rgba(0, 0, 0, 0.3)" class="center">
+                    <h1>Seller Information:</h1>
+                    <p id="sellerNameMotorcycle"></p>
+                    <p id="sellerCityandProvinceMotorcycle"></p>
+                    <p id="sellerPhoneNumberMotorcycle"></p>
+                    <p id="sellerEmailMotorcycle"></p>
+                </div>
+
+                <img src="img/motorcycle2.jpeg" class="picture_align" alt="Moto-pic"/>
+
+                <div id="buttonsViewPageMotorcycle" data-role="controlgroup" data-type="horizontal">
+                    <button type="button" id="btnCancelMotorcycle" name="btnCancelMotorcycle" data-role="button"
+                            style="background: yellow">Go Back
+                    </button>
+                    <button type="button" id="btnDeleteMotorcycle" name="btnDeleteMotorcycle" data-role="button"
+                            data-theme="b">Delete
+                    </button>
+                    <button type="button" id="btnUpdateMotorcycle" name="btnUpdateMotorcycle" data-role="button"
+                            class="ui-btn-active">Update
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h1>&copy; 2021 Stefan Kovacevic</h1>
+            </footer>
+        </div>
+        <!--</div>-->
+
+        <!--<div id="mainContent">-->
+        <div id="updateCarInformation" data-role="page">
+
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>CarDeals App</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#homePage" data-icon="home" data-theme="a"
+                               class="ui-btn-active ui-state-persist">Home</a></li>
+                        <li><a href="#addPage" data-icon="plus" data-theme="a">Post Ad</a></li>
+                        <li><a href="#viewAdsPage" data-icon="grid" data-theme="a">View All Ads</a></li>
+                        <li><a href="#modifyUsers" data-icon="gear" data-theme="a">Modify Users</a></li>
+                        <li onclick="signOut()"><a href="#" data-icon="user" data-theme="a">Sign Out</a></li>
+                        <li><a href="#aboutDeveloper" data-icon="search" data-theme="a">About</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+
+                <form id="frmAddCarAdModify" name="frmAddCarAdModify">
+                    <label for="txtMakeCarModify">Make:</label>
+                    <input type="text" id="txtMakeCarModify" name="txtMakeCarModify" data-clear-btn="true">
+                    <label for="txtModelCarModify">Model:</label>
+                    <input type="text" id="txtModelCarModify" name="txtModelCarModify" data-clear-btn="true">
+                    <label for="txtYearCarModify">Year:</label>
+                    <input type="number" id="txtYearCarModify" name="txtYearCarModify" data-clear-btn="true">
+                    <label for="txtKilometersCarModify">Kilometers:</label>
+                    <input type="number" id="txtKilometersCarModify" name="txtKilometersCarModify"
+                           data-clear-btn="true">
+
+                    <p class="center">Drive Train:</p>
+                    <fieldset data-role="controlgroup" data-type="horizontal" class="centerButtons">
+                        <input type="radio" id="radFWDModify" name="radDriveTrainModify" checked>
+                        <label for="radFWDModify">FWD</label>
+                        <input type="radio" id="radRWDModify" name="radDriveTrainModify">
+                        <label for="radRWDModify">RWD</label>
+                        <input type="radio" id="radAWDModify" name="radDriveTrainModify">
+                        <label for="radAWDModify">AWD</label>
+                    </fieldset>
+                    <label for="txtTransmissionModify">Transmission:</label>
+                    <input type="text" id="txtTransmissionModify" name="txtTransmissionModify" data-clear-btn="true">
+                    <label for="fuelTypeModify">Fuel Type:</label>
+                    <select name="fuelTypeModify" id="fuelTypeModify">
+                        <option value="Gasoline">Gasoline</option>
+                        <option value="Diesel">Diesel</option>
+                    </select>
+
+                    <label for="txtDescriptionModify">Description:</label>
+                    <textarea id="txtDescriptionModify" name="txtDescriptionModify"></textarea>
+
+                    <label for="txtPriceCarModify">Price:</label>
+                    <input type="number" id="txtPriceCarModify" name="txtPriceCarModify" data-clear-btn="true">
+
+                    <label for="img">Upload image:</label>
+                    <input type="file" id="imgModify" name="imgModify" accept="image/*">
+
+
+                    <button type="button" data-role="button" id="btnAddAdModify" name="btnAddAdModify"
+                            data-icon="plus" data-theme="b">Modify Advertisement
+                    </button>
+                </form>
+
+            </section>
+
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h1>&copy; 2021 Stefan Kovacevic</h1>
+            </footer>
+        </div>
+        <!--</div>-->
+
+        <div id="updateMotorcycleInformation" data-role="page">
+
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>CarDeals App</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#homePage" data-icon="home" data-theme="a">Home</a></li>
+                        <li><a href="#addPage" data-icon="plus" data-theme="a">Post Ad</a></li>
+                        <li><a href="#viewAdsPage" data-icon="grid" data-theme="a"
+                               class="ui-btn-active ui-state-persist">View All Ads</a></li>
+                        <li><a href="#modifyUsers" data-icon="gear" data-theme="a">Modify Users</a></li>
+                        <li onclick="signOut()"><a href="#" data-icon="user" data-theme="a">Sign Out</a></li>
+                        <li><a href="#aboutDeveloper" data-icon="search" data-theme="a">About</a></li>
+                    </ul>
+                </div>
+            </header>
+
+
+            <section data-role="content">
+
+                <form id="frmAddMotorcycleAdModify" name="frmAddMotorcycleAdModify">
+                    <label for="txtStockNumberModify">Stock Number:</label>
+                    <input type="text" id="txtStockNumberModify" name="txtStockNumberModify" data-clear-btn="true">
+                    <label for="txtMakeMotorcycleModify">Make:</label>
+                    <input type="text" id="txtMakeMotorcycleModify" name="txtMakeMotorcycleModify"
+                           data-clear-btn="true">
+                    <label for="txtModelMotorcycleModify">Model:</label>
+                    <input type="text" id="txtModelMotorcycleModify" name="txtModelMotorcycleModify"
+                           data-clear-btn="true">
+                    <label for="txtYearMotorcycleModify">Year:</label>
+                    <input type="number" id="txtYearMotorcycleModify" name="txtYearMotorcycleModify"
+                           data-clear-btn="true">
+                    <label for="txtKilometersMotorcycleModify">Kilometers:</label>
+                    <input type="number" id="txtKilometersMotorcycleModify" name="txtKilometersMotorcycleModify"
+                           data-clear-btn="true">
+
+
+                    <label for="txtEngineSizeMotorcycleModify">Engine Size:</label>
+                    <input type="number" id="txtEngineSizeMotorcycleModify" name="txtEngineSizeMotorcycleModify"
+                           data-clear-btn="true">
+
+                    <label for="txtDescriptionAddMotorcycleModify">Description:</label>
+                    <textarea id="txtDescriptionAddMotorcycleModify"
+                              name="txtDescriptionAddMotorcycleModify"></textarea>
+
+                    <label for="txtPriceMotorcycleModify">Price:</label>
+                    <input type="number" id="txtPriceMotorcycleModify" name="txtPriceMotorcycleModify"
+                           data-clear-btn="true">
+
+                    <button type="button" data-role="button" id="btnAddMotorcycleAdModify"
+                            name="btnAddMotorcycleAdModify"
+                            data-icon="plus" data-theme="b">Add Advertisement
+                    </button>
+
+
+                </form>
+
+
+            </section>
+
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h1>&copy; 2021 Stefan Kovacevic</h1>
+            </footer>
+
+        </div>
+
+        <div id="modifyUsers" data-role="page">
+
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>CarDeals App</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#homePage" data-icon="home" data-theme="a">Home</a></li>
+                        <li><a href="#addPage" data-icon="plus" data-theme="a">Post Ad</a></li>
+                        <li><a href="#viewAdsPage" data-icon="grid" data-theme="a">View All Ads</a></li>
+                        <li><a href="#modifyUsers" data-icon="gear" data-theme="a"
+                               class="ui-btn-active ui-state-persist">Modify Users</a></li>
+                        <li onclick="signOut()"><a href="#" data-icon="user" data-theme="a">Sign Out</a></li>
+                        <li><a href="#aboutDeveloper" data-icon="search" data-theme="a">About</a></li>
+                    </ul>
+                </div>
+            </header>
+
+
+            <section data-role="content">
+
+
+                <ul id="userList" data-role="listview" class="ui-listview-inset">
+
+                </ul>
+
+            </section>
+
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h1>&copy; 2021 Stefan Kovacevic</h1>
+            </footer>
+
+        </div>
+
+        <div id="registerUserModify" data-role="page">
+
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>CarDeals App</h1>
+            </header>
+
+            <h1 style="text-align: center; font-size: 200%">Edit User</h1>
+            <section data-role="content">
+
+                <form id="newUserFormModify" name="newUserFormModify">
+
+                    <label for="txtNewUsernameModify">Username:</label>
+                    <input type="text" id="txtNewUsernameModify" name="txtNewUsernameModify" readonly disabled>
+                    <label for="txtNewPasswordModify">Password:</label>
+                    <input type="text" id="txtNewPasswordModify" name="txtNewPasswordModify" data-clear-btn="true">
+
+                    <label for="txtFirstNameModify">First Name:</label>
+                    <input type="text" id="txtFirstNameModify" name="txtFirstNameModify" data-clear-btn="true">
+                    <label for="txtLastNameModify">Last Name:</label>
+                    <input type="text" id="txtLastNameModify" name="txtLastNameModify" data-clear-btn="true">
+                    <label for="txtAddressModify">Address:</label>
+                    <input type="text" id="txtAddressModify" name="txtAddressModify" data-clear-btn="true">
+                    <label for="txtCityModify">City:</label>
+                    <input type="text" id="txtCityModify" name="txtCityModify" data-clear-btn="true">
+                    <label for="txtProvinceModify">Province:</label>
+                    <input type="text" id="txtProvinceModify" name="txtProvinceModify" data-clear-btn="true">
+                    <label for="txtPostalCodeModify">Postal Code:</label>
+                    <input type="text" id="txtPostalCodeModify" name="txtPostalCodeModify" data-clear-btn="true">
+                    <label for="txtPhoneNumberModify">Phone Number:</label>
+                    <input type="text" id="txtPhoneNumberModify" name="txtPhoneNumberModify" data-clear-btn="true">
+                    <label for="txtEmailModify">Email:</label>
+                    <input type="text" id="txtEmailModify" name="txtEmailModify" data-clear-btn="true">
+
+                    <div id="buttonsViewUserPage" data-role="controlgroup" data-type="horizontal">
+                        <button type="button" id="btnGoBackLoginModify" name="btnGoBackLoginModify" data-role="button"
+                                data-icon="back" style="background: yellow">Go Back
+                        </button>
+                        <button type="button" id="btnDeleteModifyUser" name="btnDelete" data-role="button"
+                                data-theme="b">Delete
+                        </button>
+                        <button type="button" id="btnAddUserModifyUser" name="btnAddUserModifyUser" data-role="button"
+                                class="ui-btn-active">Update User
+                        </button>
+                    </div>
+                </form>
+
+            </section>
+
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h1>&copy; 2021 Stefan Kovacevic</h1>
+            </footer>
+        </div>
+
+        <div id="aboutDeveloper" data-role="page">
+
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>CarDeals App</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#homePage" data-icon="home" data-theme="a">Home</a></li>
+                        <li><a href="#addPage" data-icon="plus" data-theme="a">Post Ad</a></li>
+                        <li><a href="#viewAdsPage" data-icon="grid" data-theme="a">View All Ads</a></li>
+                        <li><a href="#modifyUsers" data-icon="gear" data-theme="a">Modify Users</a></li>
+                        <li onclick="signOut()"><a href="#" data-icon="user" data-theme="a">Sign Out</a></li>
+                        <li><a href="#aboutDeveloper" data-icon="search" data-theme="a"
+                               class="ui-btn-active ui-state-persist">About</a></li>
+                    </ul>
+                </div>
+            </header>
+
+
+            <section data-role="content">
+
+                <div class="center">
+                    <h1>Developer Information: </h1>
+                    <p>Name: Stefan Kovacevic</p>
+                    <p>Conestoga College</p>
+                    <p>Email: skovacevic2039@conestogac.on.ca</p>
+                    <p>FINAL PROJECT PROG 2430</p>
+                </div>
+
+
+            </section>
+
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h1>&copy; 2021 Stefan Kovacevic</h1>
+            </footer>
+
+        </div>
+
+
+    </body>
+</html>
